@@ -10,9 +10,9 @@ def main():
     while tf:
         main_surface.fill((0, 200, 255))
         for event in pygame.event.get():
-            keys = pygame.
-            if event.type == pygame.KEYDOWN:
-                print("test")
+            keys = pygame.get.key_pressed
+            if keys[pygame.W]:
+                print("w")
             if event.type == pygame.QUIT: 
                 tf = False
                     
