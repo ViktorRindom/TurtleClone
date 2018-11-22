@@ -10,8 +10,8 @@ def main():
     while tf:
         main_surface.fill((0, 200, 255))
         for event in pygame.event.get():
-            keys = pygame.get.key_pressed
-            if keys[pygame.W]:
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_w]:
                 print("w")
             if event.type == pygame.QUIT: 
                 tf = False
