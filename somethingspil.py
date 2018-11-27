@@ -19,7 +19,8 @@ def main():
     
     #Text
     text_opgave = font_2.render("Opgave 1", True, (0,0,0))
-    text_1 = font_1.render("Velkommen til vores spil", True, (0,0,0))
+    text_hilsen = font_2.render("Velkommen til vores spil", True, (0,0,0))
+    text_1 = font_1.render("", True, (0,0,0))
 
 
     while tf:
@@ -34,8 +35,9 @@ def main():
         #Framerate indlæses på surface
         main_surface.blit(text_fr, (surface_sz - 160, 10))
         #Text variabler indlæses
-        main_surface.blit(text_1, (surface_sz/2, surface_sz/2))
+        main_surface.blit(text_hilsen, (surface_sz/2, surface_sz/2))
         main_surface.blit(text_opgave, (10, 10))
+        main_surface.blit(text_1, (surface_sz/2, surface_sz/2))
         
         #Nu har vi sat en framerate op så vi kan se spillet køre
         if frame_count % 500 == 0:
@@ -53,9 +55,11 @@ def main():
             if keys[pygame.K_LEFT]:
                     print("Left")
                     text_1 = font_1.render("Forkert svar", True, (0,0,0))
+                    text_hilsen = font_2.render("", True, (0,0,0))
             if keys[pygame.K_RIGHT]:
                     print("Right")
-                    text_1 = font_1.render("Right", True, (0,0,0))
+                    text_1 = font_1.render("Rigtigt", True, (0,0,0))
+                    text_hilsen = font_2.render("", True, (0,0,0))
             if keys[pygame.K_UP]:
                     print("Up")
             if keys[pygame.K_DOWN]:
