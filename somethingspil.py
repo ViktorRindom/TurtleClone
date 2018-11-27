@@ -1,5 +1,5 @@
 import pygame
-tf = True
+tf = False
 
 def main():
     global tf
