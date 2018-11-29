@@ -14,15 +14,21 @@ def var():
     q = ""
     o = ""
     svar == 0
-
+def s():
+    global s1,s2,s3,s4
+    s1 = "1."
+    s2 = "2."
+    s3 = "3."
+    s4 = "4."
+    
 def main():
     global a,b,c,d,s1,s2,s3,s4,h,q,o,svar
     svar = 0
     tf = True
     intro = False
-    info = False
     ksvar = False
     o_1 = False
+    o_2 = False
     h = "Velkommen til vores spil"
     q = "Tryk mellemrum for at forsætte"
     o = ""
@@ -109,18 +115,35 @@ def main():
             t1 = time.process_time()
             frame_rate = 500 / (t1-t0)
             t0 = t1
+            
         if o_1 == True:
             if svar == 1:
                 var()
                 svar = 0
                 ksvar = True
                 q = "Du valgte det korrekte svar"
+                a = "a = 10"
+                b = "Dette ville definere a som 10"
             elif svar == 2:
                 var()
                 svar = 0
                 q = "Du valgte det forkerte svar"
                 a = "int(a) = 10"
                 b = "Dette ville give dig en syntax error"
+                c = "Mellemrum for at fortsætte"
+            elif svar == 3:
+                var()
+                svar = 0
+                q = "Du valgte det forkerte svar"
+                a = "a int = 10"
+                b = "Dette ville give dig en syntax error"
+                c = "Mellemrum for at fortsætte"
+            elif svar == 4:
+                var()
+                svar = 0
+                q = "Du valgte det forkerte svar"
+                a = "a: 10"
+                b = "Dette vil ikke definere a som 10"
                 c = "Mellemrum for at fortsætte"
                 
         #Et for loop der køre hvis man bevæger musen over vinduet eller trykker på en knap 
@@ -134,17 +157,22 @@ def main():
                 h = "Variabler"
                 q = "Vores variabler a skal være en integer lig med 10. Hvordan gøres dette?"
 
-                s1 = "1."
-                s2 = "2."
-                s3 = "3."
-                s4 = "4."
+                s()
 
                 a = "a = 10"
                 b = "int(a) = 10"
                 c = "a int = 10"
                 d = "a: 10"
-            
-            if keys[pygame.K_SPACE] and info == False:
+            if o_2 == True:
+                o = "Opgave 2"
+                h = "Boolean"
+                q = "Variabel b skal være en boolean med en falsk værdi. Hvordan gøres dette?"
+                s()
+                a = "b = false"
+                b = "b = true"
+                c = "b = False"
+                d = "b = 0"
+            if keys[pygame.K_SPACE] and intro == False:
                 o = "Information"
                 h = "Intro"
 
@@ -152,7 +180,6 @@ def main():
                 b = "Vælg denne mulighed ved at trykke 2"
                 c = "Vælg denne mulighed ved at trykke 3"
                 d = "Vælg denne mulighed ved at trykke 4"
-                info = True
                 
                 intro = True
                 
@@ -160,18 +187,18 @@ def main():
             if intro == True and ksvar == False:
                 #I if statements ser vi hvilken knap der er trykket og hvad den skal gøre ved den knap.
                 if keys[pygame.K_1]:
-                        print("1")
                         svar = 1
                 if keys[pygame.K_2]:
-                        print("2")
                         svar = 2
                 if keys[pygame.K_3]:
-                        print("3")
                         svar = 3
                 if keys[pygame.K_4]:
-                        print("4")
                         svar = 4
-                    
+            if ksvar == True and o_1 == True:
+                if keys[pygame.K_SPACE]:
+                    var()
+                    o_1 = False
+                    o_2 = True
             #Her finder vi om man lukker vinduet.
             if event.type == pygame.QUIT:
                     #Den stopper while loopet.
