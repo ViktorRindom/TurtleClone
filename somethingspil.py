@@ -1,5 +1,6 @@
 import pygame
 import time
+
 def var():
     global a,b,c,d,s1,s2,s3,s4,h,q,o,svar
     a = ""
@@ -13,16 +14,17 @@ def var():
     h = ""
     q = ""
     o = ""
-    svar == 0
+    svar = 0
 def s():
     global s1,s2,s3,s4
     s1 = "1."
     s2 = "2."
     s3 = "3."
     s4 = "4."
-    
+
 def main():
     global a,b,c,d,s1,s2,s3,s4,h,q,o,svar
+    var()
     svar = 0
     tf = True
     intro = False
@@ -31,17 +33,6 @@ def main():
     o_2 = False
     h = "Velkommen til vores spil"
     q = "Tryk mellemrum for at forsætte"
-    o = ""
-    
-    a = ""
-    b = ""
-    c = ""
-    d = ""
-
-    s1 = ""
-    s2 = ""
-    s3 = ""
-    s4 = ""
     
     pygame.init()
     pygame.display.set_caption('Et lære spil')
@@ -124,28 +115,33 @@ def main():
                 q = "Du valgte det korrekte svar"
                 a = "a = 10"
                 b = "Dette ville definere a som 10"
+                c = "Mellemrum for at fortsætte"
             elif svar == 2:
                 var()
-                svar = 0
                 q = "Du valgte det forkerte svar"
                 a = "int(a) = 10"
                 b = "Dette ville give dig en syntax error"
                 c = "Mellemrum for at fortsætte"
             elif svar == 3:
                 var()
-                svar = 0
                 q = "Du valgte det forkerte svar"
                 a = "a int = 10"
                 b = "Dette ville give dig en syntax error"
                 c = "Mellemrum for at fortsætte"
             elif svar == 4:
                 var()
-                svar = 0
                 q = "Du valgte det forkerte svar"
                 a = "a: 10"
                 b = "Dette vil ikke definere a som 10"
                 c = "Mellemrum for at fortsætte"
-                
+        if o_2 == True:
+            
+            if svar == 1:
+                var()
+                q = "Du valgte det forkerte svar"
+                a = "b = false"
+                b = "Dette vil sætte b til at være variablen false"
+                c= "Mellemrum for at forsætte"
         #Et for loop der køre hvis man bevæger musen over vinduet eller trykker på en knap 
         for event in pygame.event.get():
             #Her sætter vi en variabel der husker hvad der bliver trykket
@@ -156,9 +152,7 @@ def main():
                 o = "Opgave 1"
                 h = "Variabler"
                 q = "Vores variabler a skal være en integer lig med 10. Hvordan gøres dette?"
-
                 s()
-
                 a = "a = 10"
                 b = "int(a) = 10"
                 c = "a int = 10"
@@ -194,6 +188,7 @@ def main():
                         svar = 3
                 if keys[pygame.K_4]:
                         svar = 4
+                        
             if ksvar == True and o_1 == True:
                 if keys[pygame.K_SPACE]:
                     var()
