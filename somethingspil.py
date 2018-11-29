@@ -135,19 +135,40 @@ def main():
                 b = "Dette vil ikke definere a som 10"
                 c = "Mellemrum for at fortsætte"
         if o_2 == True:
-            
             if svar == 1:
                 var()
+                svar = 0
                 q = "Du valgte det forkerte svar"
                 a = "b = false"
                 b = "Dette vil sætte b til at være variablen false"
-                c= "Mellemrum for at forsætte"
+                c = "Mellemrum for at forsætte"
+            elif svar == 2:
+                var()
+                svar = 0
+                q = "Du valgte det forkerte svar"
+                a = "b = false"
+                b = "Dette vil sætte b til at være variablen false"
+                c = "Mellemrum for at forsætte"
+            elif svar == 3:
+                var()
+                svar = 0
+                q = "Du valgte det forkerte svar"
+                a = "b = false"
+                b = "Dette vil sætte b til at være variablen false"
+                c = "Mellemrum for at forsætte"
+            elif svar == 4:
+                var()
+                svar = 0
+                q = "Du valgte det forkerte svar"
+                a = "b = false"
+                b = "Dette vil sætte b til at være variablen false"
+                c = "Mellemrum for at forsætte"
         #Et for loop der køre hvis man bevæger musen over vinduet eller trykker på en knap 
         for event in pygame.event.get():
             #Her sætter vi en variabel der husker hvad der bliver trykket
             keys = pygame.key.get_pressed()
                 
-            if keys[pygame.K_SPACE] and intro == True and ksvar == False:
+            if keys[pygame.K_SPACE] and intro == True and ksvar == False and o_2 == False:
                 o_1 = True
                 o = "Opgave 1"
                 h = "Variabler"
@@ -157,7 +178,7 @@ def main():
                 b = "int(a) = 10"
                 c = "a int = 10"
                 d = "a: 10"
-            if o_2 == True:
+            if keys[pygame.K_SPACE] and o_2 == True and ksvar == False:  
                 o = "Opgave 2"
                 h = "Boolean"
                 q = "Variabel b skal være en boolean med en falsk værdi. Hvordan gøres dette?"
@@ -192,8 +213,13 @@ def main():
             if ksvar == True and o_1 == True:
                 if keys[pygame.K_SPACE]:
                     var()
+                    ksvar = False
                     o_1 = False
                     o_2 = True
+            if ksvar == True and o_2 == True:
+                if keys[pygame.K_SPACE] and o_2 == True:
+                    var()
+                    ksvar = False
             #Her finder vi om man lukker vinduet.
             if event.type == pygame.QUIT:
                     #Den stopper while loopet.
