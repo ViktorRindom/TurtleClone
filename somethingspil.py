@@ -31,6 +31,7 @@ def main():
     ksvar = False
     o_1 = False
     o_2 = False
+    o_3 = False
     h = "Velkommen til vores spil"
     q = "Tryk mellemrum for at forsætte"
     
@@ -189,6 +190,10 @@ def main():
                 b = "b = true"
                 c = "b = False"
                 d = "b = 0"
+            if o_3 == True and ksvar == False:
+                o = "Opgave 2"
+                h = "Egen kode"
+                q = "Her skal du selv skrive et stykke af koden."
             if keys[pygame.K_SPACE] and intro == False:
                 o = "Information"
                 h = "Intro"
