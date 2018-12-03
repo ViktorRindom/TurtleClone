@@ -207,6 +207,7 @@ def main():
                 b = "b = true"
                 c = "b = False"
                 d = "b = 0"
+            #Introduktionen
             if keys[pygame.K_SPACE] and intro == False:
                 o = "Information"
                 h = "Intro"
