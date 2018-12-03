@@ -1,102 +1,118 @@
 import pygame
 import time
-
+#Funktion til at sættte variabler til "" eller 0
 def var():
     global a,b,c,d,s1,s2,s3,s4,h,q,o,svar
+    #Svar mugligheder
     a = ""
     b = ""
     c = ""
     d = ""
+    #Tal til spørgsmåæ
     s1 = ""
     s2 = ""
     s3 = ""
     s4 = ""
+    #Overskrift
     h = ""
+    #spørgsmål
     q = ""
+    #Opgave oppe i venstre hjørne
     o = ""
+    #Hvilket svar man har valgt
     svar = 0
+#Her sætter vi tallene foran spørgsmålene
 def s():
     global s1,s2,s3,s4
     s1 = "1."
     s2 = "2."
     s3 = "3."
     s4 = "4."
-
+#Her starter vi vores program.
 def main():
     global a,b,c,d,s1,s2,s3,s4,h,q,o,svar
+    #Sætte variabler op til senere.
     var()
-    svar = 0
+    #tf til at starte loopet tf : True/False
     tf = True
     intro = False
+    
     ksvar = False
+    #Variabler til opgaver
+    o_start = False
     o_1 = False
     o_2 = False
-    o_3 = False
+    stop = False
+    
+    #Intro
     h = "Velkommen til vores spil"
     q = "Tryk mellemrum for at forsætte"
-    
+    #start Pygame
     pygame.init()
+    #Title på Pygame display
     pygame.display.set_caption('Et lære spil')
-    
-    surface_sz = 600   
+    #Skærm
+    surface_sz = 600  
     main_surface = pygame.display.set_mode((surface_sz*2, surface_sz))
-
+    #Fonte til at bruge senere 20,26... er skrift størrelse
     font_1 = pygame.font.SysFont("Calibri", 20)
     font_2 = pygame.font.SysFont("Calibri", 26)
     font_3 = pygame.font.SysFont("Calibri", 30)
     font_4 = pygame.font.SysFont("Calibri", 40)
     font_5 = pygame.font.SysFont("Calibri", 50)
 
-    
+    #Frame til at se programmet køre
     frame_count = 0
     frame_rate = 0
     t0 = time.process_time()
     
     while tf:
-        #Text
-        text_hilsen = font_5.render(h, True, (0,0,0))
-        text_q = font_3.render(q, True, (0,0,0))
-        text_opgave = font_2.render(o, True, (0,0,0))
+        #Text. Intro, overskrift. Her sætter vi vores variabler h,q,o til at være text, (0,0,0) er farve går til 255, True for at teksten ikke bliver pixelerede. 
+        text_hilsen = font_5.render( h , True, (0,0,0))
+        text_q = font_3.render( q , True, (0,0,0))
+        text_opgave = font_2.render( o , True, (0,0,0))
         
+        #Text. Spørgsmål. variabler a,b,c,d
         text_a = font_2.render(a, True, (0,0,0))
         text_b = font_2.render(b, True, (0,0,0))
         text_c = font_2.render(c, True, (0,0,0))
         text_d = font_2.render(d, True, (0,0,0))
-
+        #Tal. Spørgsmål. Variabler s1,s2,s3,s4
         text_s1 = font_3.render(s1, True, (0,0,0))
         text_s2 = font_3.render(s2, True, (0,0,0))
         text_s3 = font_3.render(s3, True, (0,0,0))
         text_s4 = font_3.render(s4, True, (0,0,0))
-        
+        #Framerate. Text. Variabler frame_count, frame_rate
+        text_fr = font_1.render("Frame rate = {1:.2f} fps".format(frame_count, frame_rate), True, (0,0,0))
 
+        #Længde. spørgsmål. Variabler, a,b,c,d og aL,bL,cL,dL.
+        #Her finder vi længden af vores spørgsmål. Ikke hvor mange bogstaver der er i dem. divider med 2 for at vi kan sætte spørgsmålet i midten.
         aL = text_a.get_rect().width/2
         bL = text_b.get_rect().width/2
         cL = text_c.get_rect().width/2
         dL = text_d.get_rect().width/2
-        
+        #Længde. Spørgsmål. Variabler, hilsen, q.
         hL = text_hilsen.get_rect().width/2
         qL = text_q.get_rect().width/2
 
         #Farve på baggrund
         main_surface.fill((0, 200, 255))
-        #Frames
+        #Tæl frames
         frame_count += 1
-        #Framerate Text
-        text_fr = font_1.render("Frame rate = {1:.2f} fps".format(frame_count, frame_rate), True, (0,0,0))
 
         #Framerate indlæses på surface
-        main_surface.blit(text_fr, (surface_sz*2 - 210, 10))
+        main_surface.blit(text_fr, (surface_sz*2-210, 10))
         #Text variabler indlæses
         main_surface.blit(text_hilsen, ((surface_sz)-hL, 20))
         main_surface.blit(text_opgave, (10, 10))
-        
+        #Spørgsmål indlæses
         main_surface.blit(text_q, ((surface_sz-qL), (surface_sz/5)))
-        
+        #Tal. Spørgsmål 
         main_surface.blit(text_s1, ((surface_sz-qL), (surface_sz/5+50)))
         main_surface.blit(text_s2, ((surface_sz-qL), (surface_sz/5+100)))
         main_surface.blit(text_s3, ((surface_sz-qL), (surface_sz/5+150)))
         main_surface.blit(text_s4, ((surface_sz-qL), (surface_sz/5+200)))
-
+        #Text. Spørgsmål
         main_surface.blit(text_a, ((surface_sz)-aL, (surface_sz/5+50)))
         main_surface.blit(text_b, ((surface_sz)-bL, (surface_sz/5+100)))
         main_surface.blit(text_c, ((surface_sz)-cL, (surface_sz/5+150)))
@@ -107,8 +123,8 @@ def main():
             t1 = time.process_time()
             frame_rate = 500 / (t1-t0)
             t0 = t1
-            
-        if o_1 == True:
+        #Check om spørgsmål 1 er svaret rigtigt
+        if o_1 == True and o_2 == False:
             if svar == 1:
                 var()
                 svar = 0
@@ -135,17 +151,16 @@ def main():
                 a = "a: 10"
                 b = "Dette vil ikke definere a som 10"
                 c = "Mellemrum for at fortsætte"
+        #Check om spørgsmål 2 er svaret rigtigt
         if o_2 == True:
             if svar == 1:
                 var()
-                svar = 0
                 q = "Du valgte det forkerte svar"
                 a = "b = false"
                 b = "Dette vil sætte b til at være variablen false"
                 c = "Mellemrum for at forsætte"
             elif svar == 2:
                 var()
-                svar = 0
                 q = "Du valgte det forkerte svar"
                 a = "b = false"
                 b = "Dette vil sætte b til at være variablen false"
@@ -158,9 +173,9 @@ def main():
                 a = "b = False"
                 b = "Dette vil sætte b til at være variablen False"
                 c = "Mellemrum for at forsætte"
+                stop = True
             elif svar == 4:
                 var()
-                svar = 0
                 q = "Du valgte det forkerte svar"
                 a = "b = 0"
                 b = "Dette vil sætte b til at være variablen false"
@@ -169,7 +184,7 @@ def main():
         for event in pygame.event.get():
             #Her sætter vi en variabel der husker hvad der bliver trykket
             keys = pygame.key.get_pressed()
-                
+            #Her starter vi det første spørgsmål
             if keys[pygame.K_SPACE] and intro == True and ksvar == False and o_2 == False:
                 o_1 = True
                 start = True
@@ -181,7 +196,9 @@ def main():
                 b = "int(a) = 10"
                 c = "a int = 10"
                 d = "a: 10"
-            if o_2 == True and ksvar == False:  
+            if keys[pygame.K_SPACE] and o_2 == True and ksvar == False or o_start == True:
+                if o_start == True:
+                    o_start = False
                 o = "Opgave 2"
                 h = "Boolean"
                 q = "Variabel b skal være en boolean med en falsk værdi. Hvordan gøres dette?"
@@ -190,10 +207,6 @@ def main():
                 b = "b = true"
                 c = "b = False"
                 d = "b = 0"
-            if o_3 == True and ksvar == False:
-                o = "Opgave 2"
-                h = "Egen kode"
-                q = "Her skal du selv skrive et stykke af koden."
             if keys[pygame.K_SPACE] and intro == False:
                 o = "Information"
                 h = "Intro"
@@ -219,13 +232,14 @@ def main():
                 if keys[pygame.K_SPACE]:
                     var()
                     ksvar = False
-                    o_1 = False
+                    #o_1 = False
+                    o_start = True
                     o_2 = True
             if ksvar == True and o_2 == True:
                 if keys[pygame.K_SPACE] and o_2 == True:
                     var()
-                    o_2 = False
-                    o_3 = True
+                    o_2 = True
+                    stop = True
                     ksvar = False
             #Her finder vi om man lukker vinduet.
             if event.type == pygame.QUIT:
