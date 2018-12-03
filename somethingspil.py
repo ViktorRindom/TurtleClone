@@ -236,7 +236,7 @@ def main():
                     o_2 = True
             if ksvar == True and o_2 == True and stop == False:
                 if keys[pygame.K_SPACE] and o_2 == True:
-                    v ar()
+                    var()
                     o_2 = True
                     ksvar = False
             #Her finder vi om man lukker vinduet.
