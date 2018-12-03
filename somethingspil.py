@@ -168,6 +168,7 @@ def main():
             elif svar == 3:
                 var()
                 ksvar = True
+                stop = True
                 svar = 0
                 q = "Du valgte det rigtige svar"
                 a = "b = False"
@@ -197,8 +198,7 @@ def main():
                 c = "a int = 10"
                 d = "a: 10"
             if keys[pygame.K_SPACE] and o_2 == True and ksvar == False or o_start == True:
-                if o_start == True:
-                    o_start = False
+                o_start = False
                 o = "Opgave 2"
                 h = "Boolean"
                 q = "Variabel b skal være en boolean med en falsk værdi. Hvordan gøres dette?"
@@ -217,7 +217,7 @@ def main():
                 start = False
                 intro = True
 
-            if intro == True and start == True and ksvar == False:
+            if intro == True and start == True and ksvar == False and stop == False:
                 #I if statements ser vi hvilken knap der er trykket og hvad den skal gøre ved den knap.
                 if keys[pygame.K_1]:
                         svar = 1
@@ -228,22 +228,24 @@ def main():
                 if keys[pygame.K_4]:
                         svar = 4
                         
-            if ksvar == True and o_1 == True:
+            if ksvar == True and o_1 == True and stop == False:
                 if keys[pygame.K_SPACE]:
                     var()
                     ksvar = False
-                    #o_1 = False
                     o_start = True
                     o_2 = True
-            if ksvar == True and o_2 == True:
+            if ksvar == True and o_2 == True and stop == False:
                 if keys[pygame.K_SPACE] and o_2 == True:
                     var()
                     o_2 = True
-                    stop = True
                     ksvar = False
             #Her finder vi om man lukker vinduet.
+            if ksvar == True and keys[pygame.K_SPACE] and stop == True:
+                var()
+                o = "Slut"
+                h = "Tillyke du er færdig med spillet"
             if event.type == pygame.QUIT:
-                    #Den stopper while loopet.
+                #Den stopper while loopet.
                 tf = False
         
         pygame.display.flip()
